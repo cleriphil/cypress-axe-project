@@ -1,12 +1,20 @@
 /// <reference types="cypress"/>
  
+
+const sizes = ['macbook-15','iphone-6', 'ipad-2'];
+const urls = ['https://www.clairelucebaldwin.com', 'https://www.clairelucebaldwin.com/portfolio','https://www.clairelucebaldwin.com/portfolio-thumb-alena','https://www.clairelucebaldwin.com/shop','https://www.clairelucebaldwin.com/blog-1','https://www.clairelucebaldwin.com/about-me'];
+
 describe('Claire\'s website', () => {
-    it('should log any accessibility failures', () => {
-        cy.visit('https://www.clairelucebaldwin.com/');
-        cy.injectAxe();
-        cy.checkA11y();
+    urls.forEach(url => {
+        describe(`url: ${url}`, () => {
+            sizes.forEach(size => {
+                it(`Should log any accessibility failures on ${url} on ${size} viewport`, () => {
+                    cy.visit(url);
+                    cy.viewport(size);
+                    cy.injectAxe();
+                    cy.checkA11y();
+                });
+            });
+        });
     });
 });
-
-//TO DO 
-// Test multiple URLs on claire's site
