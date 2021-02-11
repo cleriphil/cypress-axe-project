@@ -8,11 +8,11 @@ describe('Claire\'s website', () => {
     urls.forEach(url => {
         describe(`url: ${url}`, () => {
             sizes.forEach(size => {
-                it(`Should log any accessibility failures on ${url} on ${size} viewport`, () => {
+                it(`Should log any accessibility failures on ${url} on ${size}`, () => {
                     cy.visit(url);
                     cy.viewport(size);
                     cy.injectAxe();
-                    cy.checkA11y();
+                    cy.checkAccessibility(); //custom command for printing a11y violations in command line
                 });
             });
         });
